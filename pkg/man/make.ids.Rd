@@ -20,4 +20,5 @@ construct the standard form matrices.}
 
 \examples{
 vars <- make.ids(xi=5,beta0=1,beta=2)
+with(vars, xi >= 0)
 }

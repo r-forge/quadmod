@@ -21,13 +21,7 @@ standard.form.constraints(constraints, ids)
 ## example: optimization variable \alpha\in\RR^3 subject to the
 ## constraint that it must be on the standard simplex:
 opt.vars <- make.ids(alpha=3)
-constraints <- list(constrain("geq",0,variable("alpha",1)),
-                    constrain("geq",0,variable("alpha",2)),
-                    constrain("geq",0,variable("alpha",3)),
-                    constrain("eq",1,
-                              variable("alpha",1),
-                              variable("alpha",2),
-                              variable("alpha",3)))
+constraints <- with(opt.vars,c(alpha >= 0,list(sum(alpha) == 1)))
 standard.form.constraints(constraints,opt.vars)
 
 ## linear svm example
@@ -39,17 +33,10 @@ plot(x,col=y+2)
 n <- nrow(x)
 
 vars <- make.ids(slack=n,intercept=1,normal=p)
-constraints <- list()
+constraints <- vars$slack >= 0
 for(i in 1:n){
-  cargs <- list("geq",1,
-                variable("slack",i),
-                variable("intercept",coef=y[i]))
-  for(j in 1:p){
-    cargs <- c(cargs,list(variable("normal",j,coef=y[i]*x[i,j])))
-  }
-  constraints <-
-    c(constraints,list(constrain("geq",0,variable("slack",i)),
-                       do.call(constrain,cargs)))
+  ivars <- with(vars,intercept*y[i] + sum(normal)*(x[i,]*y[i]) + slack[i])
+  constraints <- c(constraints,list(ivars >= 1))
 }
 solver.args <- standard.form.constraints(constraints,vars)
 n.vars <- length(unlist(vars))
