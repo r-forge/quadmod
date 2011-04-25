@@ -223,7 +223,7 @@ standard.form.constraints <- structure(function
   Dvec[vars$normal] <- 1
   D <- diag(Dvec)
   d <- rep(0,n.vars)
-  d[vars$slack] <- -1 ## C == -1
+  d[vars$slack] <- -1 ## C == 1
   library(quadprog)
   sol <- solve.QP(D,d,solver.args$A,solver.args$b0)
   slack <- sol$solution[vars$slack]
