@@ -29,7 +29,7 @@ set.seed(1)
 p <- 2
 y <- rep(c(-1,1),each=20)
 x <- replicate(p,rnorm(length(y),y))
-plot(x,col=y+2)
+plot(x,col=y+2,asp=1)
 n <- nrow(x)
 
 vars <- make.ids(slack=n,intercept=1,normal=p)
@@ -51,12 +51,23 @@ slack <- sol$solution[vars$slack]
 normal <- sol$solution[vars$normal]
 intercept <- sol$solution[vars$intercept]
 
+title(paste("A linear Support Vector Machine (SVM):",
+            "margin SVs circled, slack drawn in red for other SVs"))
 abline(-intercept/normal[2],-normal[1]/normal[2])
-abline(1-intercept/normal[2],-normal[1]/normal[2],lty="dotted")
-abline(-1-intercept/normal[2],-normal[1]/normal[2],lty="dotted")
+abline((1-intercept)/normal[2],-normal[1]/normal[2],lty="dotted")
+abline((-1-intercept)/normal[2],-normal[1]/normal[2],lty="dotted")
 f <- function(x)intercept+sum(normal*x)
 yfx <- apply(x,1,f)*y
 on.margin <- abs(yfx-1)<1e-6
-points(x[on.margin,],cex=2,col=y+2)
-points(x[yfx<1,],pch=2,col=y+2)
+points(x[on.margin,],cex=2,col=y[on.margin]+2)
+i <- yfx<1
+## these 2 complicated formulas calculate the point on margin where
+## the data point starts picking up slack
+x1 <- ((y[i]-intercept)*normal[1]-
+       normal[1]*normal[2]*x[i,2]+
+       normal[2]^2*x[i,1])/(normal[2]^2+normal[1]^2)
+x2 <- (y[i]-intercept)/normal[2]-normal[1]/normal[2]*x1
+segments(x[i,1],x[i,2],x1,x2,col="red")
+l2norm <- function(x)sqrt(sum(x^2))
+rbind(apply(cbind(x1,x2)-x[i,],1,l2norm)*l2norm(normal),slack[i])
 }
