@@ -182,8 +182,7 @@ standard.form.constraints <- structure(function
   A <- matrix(0,n.variables,n.constraints)
   for(cn in seq_along(ordered.constraints)){
     constraint <- ordered.constraints[[cn]]
-    for(vn in seq_along(constraint$variables)){
-      v <- constraint$variables[[vn]]
+    for(v in constraint$variables){
       a <- unclass(ids[[v$variable]])
       if(is.null(a))stop(sprintf("variable %s not found",v$variable))
       A.row <- if(is.null(v$j)){
