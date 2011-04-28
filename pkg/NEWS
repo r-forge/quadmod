@@ -1,0 +1,6 @@
+1.0 28 April 2011 
+
+List-based constraint definition, and translation to standard form.
+
+Custom S3 methods for binary operators to simplify constraint
+definition.
