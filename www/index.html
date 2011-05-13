@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>Quadratic programming modeling language for R</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-05-13 15:13:24 CEST"/>
+<meta name="author" content="Toby HOCKING"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">Quadratic programming modeling language for R</h1>
+<p>MATLAB has <a href="http://cvxr.com/cvx/">CVX</a>, Python has <a href="http://cvxmod.net/">CVXMOD</a>. Why doesn't R have a <b>high-level modeling language</b> for specifying convex optimization problems, then <b>analyzing and solving</b> them using the most efficient algorithms available?
+</p>
+<p>
+There is some work toward a unified interface for various mathematical programming solvers in <a href="https://r-forge.r-project.org/projects/roi/">the ROI project on R-Forge</a>, but it does not provide a high-level modeling language.
+</p>
+<p>
+The <code>quadmod</code> package is a proof-of-concept for an optimization problem modeling language within R. To get started, check out the following example, which solves the primal problem of linear SVM for some simulated data in 2d:
+</p>
+
+
+
+<pre class="src src-R">install.packages(<span style="color: #bc8f8f;">"quadmod"</span>,repos=<span style="color: #bc8f8f;">"http://R-Forge.R-project.org"</span>)
+<span style="color: #5f9ea0;">library</span>(quadmod)
+example(standard.form.constraints)
+</pre>
+
+
+
+<p>
+<img src="linear-svm.png"  alt="linear-svm.png" />
+</p>
+<p>
+The interesting part of the example is the definition of the problem constraints, which is accomplished with code that looks a lot like the mathematics:
+</p>
+
+
+
+<pre class="src src-R">vars <span style="color: #5f9ea0;">&lt;-</span> make.ids(slack=n,intercept=1,normal=p)
+constraints <span style="color: #5f9ea0;">&lt;-</span> vars$slack &gt;= 0
+<span style="color: #a020f0;">for</span>(i <span style="color: #a020f0;">in</span> 1:n){
+  ivars <span style="color: #5f9ea0;">&lt;-</span> with(vars,intercept*y[i] + sum(normal)*(x[i,]*y[i]) + slack[i])
+  constraints <span style="color: #5f9ea0;">&lt;-</span> c(constraints,list(ivars &gt;= 1))
+}
+</pre>
+
+
+
+<p>
+The code is written in terms of the variable names <code>slack</code>, <code>intercept</code>, <code>normal</code> instead of standard form constraint matrix indices, and is thus easier to read, write, and maintain. This helps a lot when writing complicated mathematical programs.
+</p>
+<p>
+However, <code>quadmod</code> is only a proof-of-concept for quadratic program constraints. We need several things before we get an R package as good as CVX:
+</p>
+<ul>
+<li>a syntax for specifying the objective function.
+
+</li>
+<li>a convex analysis framework for translating problems into standard form and analyzing them to determine the most efficient solver available.
+</li>
+</ul>
+
+<p>
+Please email Toby DOT Hocking AT inria DOT fr if you have heard of any interesting progress in this direction or are interested in working on this together.
+</p>
+<p>
+Back to <a href="http://r-forge.r-project.org/projects/quadmod/">the R-Forge project page</a>.
+</p><div id="postamble">
+<p class="author">Author: Toby HOCKING</p>
+<p class="creator">Org version 7.5 with Emacs version 22</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+</div>
+</div>
+</body>
+</html>
