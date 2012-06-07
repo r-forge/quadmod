@@ -1,7 +1,7 @@
 Package: quadmod
 Maintainer: Toby Dylan Hocking <toby.hocking@inria.fr>
 Author: Toby Dylan Hocking
-Version: 1.0
+Version: 1.1
 License: GPL-3
 Title: Quadratic programming modeling language
 Description: An intuitive modeling language for quadratic programs,

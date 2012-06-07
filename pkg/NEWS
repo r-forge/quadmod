@@ -1,3 +1,7 @@
+1.1 7 June 2012
+
+Verify constraints before conversion to standard form.
+
 1.0 28 April 2011 
 
 List-based constraint definition, and translation to standard form.
