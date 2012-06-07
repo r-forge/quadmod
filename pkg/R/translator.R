@@ -165,6 +165,38 @@ print.constraint <- function(x,...){
   key <- c(geq=">=",eq="==")
   cat(key[x$equality],x$constant,"\n")
 }
+is.constraint <- function
+### Check if an object is a constraint.
+(x
+### object to check.
+ ){
+  "constraint" %in% class(x)
+### TRUE if x is of class "constraint".
+}
+validate.constraint <- function(x,vars){
+  problem <- function(msg){
+    str(x)
+    cat("invalid constraint: ",msg,".\n",sep="")
+    stop("constraints did not validate.")
+  }
+  if(!is.constraint(x))problem('not classed "constraint"')
+  if( !(x$equality %in% c("geq","eq")) ){
+    problem('equality should be "eq" or "geq"')
+  }
+  if(!is.numeric(x$constant))problem('constant must be numeric')
+  if(length(x$constant) != 1)problem('constant must be length 1')
+  if(!is.list(x$variables))problem('variables must be a list')
+  v.prob <- function(msg){
+    str(vars)
+    problem(msg)
+  }
+  for(v in x$variables){
+    if(!is.character(v$variable))v.prob('variable name not character')
+    if(length(v$variable) != 1)v.prob('variable name must be length 1')
+    if(! v$variable %in% names(vars))v.prob('variable name not in var list')
+    ## TODO: verify indices, etc.
+  }
+}
 standard.form.constraints <- structure(function
 ### Convert constraints to standard form matrix and vector.
 (constraints,
@@ -172,6 +204,10 @@ standard.form.constraints <- structure(function
  ids
 ### List of optimization variable ids created using make.ids().
  ){
+  ## check if all constraints are valid wrt ids.
+  for(constraint in constraints){
+    validate.constraint(constraint,ids)
+  }
   ## sort by type of constraint:
   eq <- sapply(constraints,"[[","equality")
   meq <- sum(eq=="eq") ## number of equality constraints
