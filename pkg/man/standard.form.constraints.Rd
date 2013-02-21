@@ -2,9 +2,7 @@
 \alias{standard.form.constraints}
 \title{standard form constraints}
 \description{Convert constraints to standard form matrix and vector.}
-\usage{
-standard.form.constraints(constraints, ids)
-}
+\usage{standard.form.constraints(constraints, ids)}
 \arguments{
   \item{constraints}{List of constraints created using constrain().}
   \item{ids}{List of optimization variable ids created using make.ids().}
@@ -12,7 +10,7 @@ standard.form.constraints(constraints, ids)
 
 \value{List of variable coefficients and constraint constants.}
 
-\author{Toby Dylan Hocking <toby.hocking@inria.fr>}
+\author{Toby Dylan Hocking}
 
 
 
@@ -45,7 +43,7 @@ Dvec[vars$normal] <- 1
 D <- diag(Dvec)
 d <- rep(0,n.vars)
 d[vars$slack] <- -1 ## C == 1
-library(quadprog)
+
 sol <- solve.QP(D,d,solver.args$A,solver.args$b0)
 slack <- sol$solution[vars$slack]
 normal <- sol$solution[vars$normal]

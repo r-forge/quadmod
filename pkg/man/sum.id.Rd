@@ -2,9 +2,7 @@
 \alias{sum.id}
 \title{sum id}
 \description{sum all variables, returning a linear combination}
-\usage{
-\method{sum}{id}(a, ...)
-}
+\usage{\method{sum}{id}(a, ...)}
 \arguments{
   \item{a}{
 }
@@ -14,7 +12,7 @@
 
 
 
-\author{Toby Dylan Hocking <toby.hocking@inria.fr>}
+\author{Toby Dylan Hocking}
 
 
 

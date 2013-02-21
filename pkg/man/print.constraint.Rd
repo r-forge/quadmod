@@ -2,9 +2,7 @@
 \alias{print.constraint}
 \title{print constraint}
 \description{print method that shows each variable and constant}
-\usage{
-\method{print}{constraint}(x, ...)
-}
+\usage{\method{print}{constraint}(x, ...)}
 \arguments{
   \item{x}{
 }
@@ -14,7 +12,7 @@
 
 
 
-\author{Toby Dylan Hocking <toby.hocking@inria.fr>}
+\author{Toby Dylan Hocking}
 
 
 

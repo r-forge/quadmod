@@ -2,9 +2,7 @@
 \alias{print.variable}
 \title{print variable}
 \description{print method that shows variable indices and coefficient}
-\usage{
-\method{print}{variable}(x, ...)
-}
+\usage{\method{print}{variable}(x, ...)}
 \arguments{
   \item{x}{
 }
@@ -14,7 +12,7 @@
 
 
 
-\author{Toby Dylan Hocking <toby.hocking@inria.fr>}
+\author{Toby Dylan Hocking}
 
 
 

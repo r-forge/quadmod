@@ -1,8 +1,13 @@
-1.1 7 June 2012
+1.2 -- 21 Jan 2013
+
+Skeleton run.quadmod function, and run.quadprog convenience
+function. Depend on quadprog instead of Suggest.
+
+1.1 -- 7 June 2012
 
 Verify constraints before conversion to standard form.
 
-1.0 28 April 2011 
+1.0 -- 28 April 2011 
 
 List-based constraint definition, and translation to standard form.
 

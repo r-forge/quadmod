@@ -3,9 +3,7 @@
 \title{variable}
 \description{Make a list that represents an optimization variable and its
 coefficient in the context of a constraint.}
-\usage{
-variable(name, i = 1, j = NULL, coef = 1)
-}
+\usage{variable(name, i = 1, j = NULL, coef = 1)}
 \arguments{
   \item{name}{Name of the optimization variable, created with make.ids.}
   \item{i}{If the optimization variable is a vector, the element. If it is a
@@ -16,7 +14,7 @@ matrix, the row.}
 
 \value{List with elements "variable" "i" "j" "coef", of class "variable".}
 
-\author{Toby Dylan Hocking <toby.hocking@inria.fr>}
+\author{Toby Dylan Hocking}
 
 
 

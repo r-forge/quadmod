@@ -2,9 +2,7 @@
 \alias{sum.lincomblist}
 \title{sum lincomblist}
 \description{collapse a list of linear combinations into a single linear combination}
-\usage{
-\method{sum}{lincomblist}(lcs, ...)
-}
+\usage{\method{sum}{lincomblist}(lcs, ...)}
 \arguments{
   \item{lcs}{
 }
@@ -14,7 +12,7 @@
 
 
 
-\author{Toby Dylan Hocking <toby.hocking@inria.fr>}
+\author{Toby Dylan Hocking}
 
 
 

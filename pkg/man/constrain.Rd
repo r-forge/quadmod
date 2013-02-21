@@ -4,9 +4,7 @@
 \description{Make a constraint list. Write each constraint as c_1 v_1 + ... +
 c_n v_n (in)equality constant, where c_i are real coefficients and
 v_i are optimization variables.}
-\usage{
-constrain(equality, constant, ...)
-}
+\usage{constrain(equality, constant, ...)}
 \arguments{
   \item{equality}{"eq" or "geq" designating whether this is an equality or an
 inequality constraint.}
@@ -17,7 +15,7 @@ like variable("xi",i,j,-1).}
 
 
 
-\author{Toby Dylan Hocking <toby.hocking@inria.fr>}
+\author{Toby Dylan Hocking}
 
 
 
