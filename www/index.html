@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Quadratic programming modeling language for R</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Quadratic programming modeling language for R"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-05-13 15:13:24 CEST"/>
-<meta name="author" content="Toby HOCKING"/>
+<meta name="generated" content="2013-02-22T11:52+0900"/>
+<meta name="author" content="Toby Dylan Hocking"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <style type="text/css">
@@ -44,6 +44,12 @@ lang="en" xml:lang="en">
   dt { font-weight: bold; }
   div.figure { padding: 0.5em; }
   div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
   textarea { overflow-x: auto; }
   .linenr { font-size:smaller }
   .code-highlighted {background-color:#ffff00;}
@@ -55,6 +61,30 @@ lang="en" xml:lang="en">
   /*]]>*/-->
 </style>
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -76,12 +106,107 @@ lang="en" xml:lang="en">
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+/**
+ *
+ * @source: http://orgmode.org/mathjax/MathJax.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/mathjax/MathJax.js.
+ *
+ * Copyright (C) 2012-2013  MathJax
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/mathjax/MathJax.js.
+ *
+ */
 
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code below.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code below is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code below.
+*/
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
-<div id="content">
 
+<div id="preamble">
+
+</div>
+
+<div id="content">
 <h1 class="title">Quadratic programming modeling language for R</h1>
+
 <p>MATLAB has <a href="http://cvxr.com/cvx/">CVX</a>, Python has <a href="http://cvxmod.net/">CVXMOD</a>. Why doesn't R have a <b>high-level modeling language</b> for specifying convex optimization problems, then <b>analyzing and solving</b> them using the most efficient algorithms available?
 </p>
 <p>
@@ -93,34 +218,66 @@ The <code>quadmod</code> package is a proof-of-concept for an optimization probl
 
 
 
-<pre class="src src-R">install.packages(<span style="color: #bc8f8f;">"quadmod"</span>,repos=<span style="color: #bc8f8f;">"http://R-Forge.R-project.org"</span>)
-<span style="color: #5f9ea0;">library</span>(quadmod)
-example(standard.form.constraints)
+<pre class="src src-R">install.packages(<span style="color: #8b2252;">"quadmod"</span>,repos=<span style="color: #8b2252;">"http://R-Forge.R-project.org"</span>)
+<span style="color: #008b8b;">library</span>(quadmod)
+example(run.quadprog)
 </pre>
-
 
 
 <p>
 <img src="linear-svm.png"  alt="linear-svm.png" />
 </p>
 <p>
-The interesting part of the example is the definition of the problem constraints, which is accomplished with code that looks a lot like the mathematics:
+The interesting part of the example is the definition of the problem
+constraints, which is accomplished with code that looks a lot like the
+mathematics:
 </p>
 
 
+\begin{equation}
+\newcommand{\RR}{\mathbb R}
 
-<pre class="src src-R">vars <span style="color: #5f9ea0;">&lt;-</span> make.ids(slack=n,intercept=1,normal=p)
-constraints <span style="color: #5f9ea0;">&lt;-</span> vars$slack &gt;= 0
+\begin{aligned}
+\operatorname*{minimize}_{\xi\in\RR^n,\beta\in\RR,w\in\RR^p}\ & w'w + C\sum_{i=1}^n \xi_i\\
+\text{subject to }& \text{ for all $i$},\ \xi_i\geq 0\text{ and}\\
+& y_i(\beta + w'x_i) + \xi_i \geq 1.
+\end{aligned}
+\end{equation}
+
+
+<pre class="src src-R"><span style="color: #b22222;">## </span><span style="color: #b22222;">Define the dimensions of the optimization variables.</span>
+vars <span style="color: #008b8b;">&lt;-</span> make.ids(slack=n,intercept=1,normal=p)
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">Define the objective function.</span>
+n.vars <span style="color: #008b8b;">&lt;-</span> length(unlist(vars))
+tolerance <span style="color: #008b8b;">&lt;-</span> 1e-6
+Dvec <span style="color: #008b8b;">&lt;-</span> rep(tolerance,n.vars)
+Dvec[vars$normal] <span style="color: #008b8b;">&lt;-</span> 1
+D <span style="color: #008b8b;">&lt;-</span> diag(Dvec)
+d <span style="color: #008b8b;">&lt;-</span> rep(0,n.vars)
+d[vars$slack] <span style="color: #008b8b;">&lt;-</span> -1 <span style="color: #b22222;">## </span><span style="color: #b22222;">C == 1</span>
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">Define the constraint functions.</span>
+constraints <span style="color: #008b8b;">&lt;-</span> vars$slack &gt;= 0
 <span style="color: #a020f0;">for</span>(i <span style="color: #a020f0;">in</span> 1:n){
-  ivars <span style="color: #5f9ea0;">&lt;-</span> with(vars,intercept*y[i] + sum(normal)*(x[i,]*y[i]) + slack[i])
-  constraints <span style="color: #5f9ea0;">&lt;-</span> c(constraints,list(ivars &gt;= 1))
+  ivars <span style="color: #008b8b;">&lt;-</span> with(vars,intercept*y[i] + sum(normal)*(x[i,]*y[i]) + slack[i])
+  constraints <span style="color: #008b8b;">&lt;-</span> c(constraints,list(ivars &gt;= 1))
 }
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">Convert to standard form and run the solver.</span>
+sol <span style="color: #008b8b;">&lt;-</span> run.quadprog(vars, D, d, constraints)
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">Note that the optimal solution vectors can be accessed by their</span>
+<span style="color: #b22222;">## </span><span style="color: #b22222;">variable names, e.g.</span>
+sol$slack
 </pre>
 
 
-
 <p>
-The code is written in terms of the variable names <code>slack</code>, <code>intercept</code>, <code>normal</code> instead of standard form constraint matrix indices, and is thus easier to read, write, and maintain. This helps a lot when writing complicated mathematical programs.
+The code is written in terms of the variable names <code>slack</code>,
+<code>intercept</code>, <code>normal</code> instead of standard form constraint matrix
+indices, and is thus easier to read, write, and maintain. This helps a
+lot when writing complicated mathematical programs.
 </p>
 <p>
 However, <code>quadmod</code> is only a proof-of-concept for quadratic program constraints. We need several things before we get an R package as good as CVX:
@@ -133,16 +290,20 @@ However, <code>quadmod</code> is only a proof-of-concept for quadratic program c
 </li>
 </ul>
 
+
 <p>
-Please email Toby DOT Hocking AT inria DOT fr if you have heard of any interesting progress in this direction or are interested in working on this together.
+Please write toby@sg.cs.titech.ac.jp if you have heard of any interesting progress in this direction or are interested in working on this together.
 </p>
 <p>
 Back to <a href="http://r-forge.r-project.org/projects/quadmod/">the R-Forge project page</a>.
-</p><div id="postamble">
-<p class="author">Author: Toby HOCKING</p>
-<p class="creator">Org version 7.5 with Emacs version 22</p>
+</p></div>
+
+<div id="postamble">
+<p class="date">Date: 2013-02-22T11:52+0900</p>
+<p class="author">Author: Toby Dylan Hocking</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3e with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
-</div>
+
 </div>
 </body>
 </html>
