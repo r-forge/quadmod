@@ -1,3 +1,7 @@
+2013.5.22
+
+run.lpSolveAPI for linear programs.
+
 1.2 -- 21 Jan 2013
 
 Skeleton run.quadmod function, and run.quadprog convenience
