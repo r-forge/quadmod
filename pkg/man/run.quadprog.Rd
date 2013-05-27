@@ -2,7 +2,8 @@
 \alias{run.quadprog}
 \title{run quadprog}
 \description{Run quadprog with the specified constraints and annotate the
-output using the specified variables.}
+output using the specified variables. The problem is: minimize_x
+-d'x + 1/2 x'Dx such that the constraints are verified.}
 \usage{run.quadprog(vars, D, d, constraints)}
 \arguments{
   \item{vars}{List of variables.}

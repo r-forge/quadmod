@@ -14,7 +14,8 @@ run.quadmod <- function
   
 run.quadprog <- structure(function
 ### Run quadprog with the specified constraints and annotate the
-### output using the specified variables.
+### output using the specified variables. The problem is: minimize_x
+### -d'x + 1/2 x'Dx such that the constraints are verified.
 (vars,
 ### List of variables.
  D,

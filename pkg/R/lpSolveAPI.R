@@ -1,5 +1,6 @@
 run.lpSolveAPI <- structure(function
-### Run lpSolve::lp to solve a linear program.
+### Run lpSolve::lp to solve a linear program: maximize coefficients *
+### variables such that the constraints are verified.
 (variables,
 ### List of variables from make.ids.
  coefficients,

@@ -1,7 +1,8 @@
 \name{run.lpSolveAPI}
 \alias{run.lpSolveAPI}
 \title{run lpSolveAPI}
-\description{Run lpSolve::lp to solve a linear program.}
+\description{Run lpSolve::lp to solve a linear program: maximize coefficients *
+variables such that the constraints are verified.}
 \usage{run.lpSolveAPI(variables, coefficients, constraints)}
 \arguments{
   \item{variables}{List of variables from make.ids.}
