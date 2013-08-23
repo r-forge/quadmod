@@ -43,6 +43,17 @@ make.ids <- structure(function
   structure(vars,class="lincomb")
 }
 
+"*.lincomblist" <- function(vars,x){
+### multiply coefficients, returning a linear combination list
+  stopifnot(is.numeric(x))
+  if(length(x)==1)x <- rep(x,length(vars))
+  stopifnot(length(x)==length(vars))
+  for(i in seq_along(vars)){
+    vars[[i]] <- vars[[i]] * x[i]
+  }
+  vars
+}
+
 sum.id <- function(a,...){
 ### sum all variables, returning a linear combination
   sum(a[])
@@ -62,7 +73,9 @@ sum.id <- function(a,...){
 
 ">=.lincomblist" <- function(lcs,constant){
 ### make a list of inequality constraints from a list of linear combinations
-  lapply(lcs,function(lc)lc>=constant)
+  L <- lapply(lcs,function(lc)lc>=constant)
+  if(length(L)==1)L <- L[[1]]
+  L
 }
 
 sum.lincomblist <- function(lcs,...){

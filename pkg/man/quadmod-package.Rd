@@ -10,7 +10,7 @@ to use solve.QP().}
 \tabular{ll}{Package: \tab quadmod\cr
 Maintainer: \tab Toby Dylan Hocking <toby@sg.cs.titech.ac.jp>\cr
 Author: \tab Toby Dylan Hocking\cr
-Version: \tab 2013.5.27\cr
+Version: \tab 2013.8.23\cr
 License: \tab GPL-3\cr
 Title: \tab Quadratic programming modeling language\cr
 Depends: \tab quadprog, lpSolveAPI\cr

@@ -33,7 +33,7 @@ stopifnot(sapply(two.pos, is.constraint))
 stopifnot(length(two.pos)==2)
 
 ## each of these variables times these values must be positive.
-each.lc.pos <- vars$x[] * c(-1,1,1) >= 1
+each.lc.pos <- vars$x[] * c(-1,1,1) >= 0
 stopifnot(is.list(each.lc.pos))
 stopifnot(sapply(each.lc.pos, is.constraint))
 
