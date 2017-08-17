@@ -37,7 +37,9 @@ run.lpSolveAPI <- structure(function
   }
   fit
 },ex=function(){
-  data(good.bad.dist)
+
+  library(quadmod)
+  data(good.bad.dist, envir=environment())
   feat <- good.bad.dist$features
   better <- good.bad.dist$better
 

@@ -280,7 +280,7 @@ standard.form.constraints <- structure(function
   d <- rep(0,n.vars)
   d[vars$slack] <- -1 ## C == 1
 
-  sol <- solve.QP(D,d,solver.args$A,solver.args$b0)
+  sol <- quadprog::solve.QP(D,d,solver.args$A,solver.args$b0)
   slack <- sol$solution[vars$slack]
   normal <- sol$solution[vars$normal]
   intercept <- sol$solution[vars$intercept]

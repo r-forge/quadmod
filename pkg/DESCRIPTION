@@ -1,12 +1,12 @@
 Package: quadmod
-Maintainer: Toby Dylan Hocking <toby@sg.cs.titech.ac.jp>
+Maintainer: Toby Dylan Hocking <toby.hocking@r-project.org>
 Author: Toby Dylan Hocking
-Version: 2013.8.23
+Version: 2017.08.17
 License: GPL-3
 Title: Quadratic programming modeling language
 Description: An intuitive modeling language for quadratic programs,
  and functions to generate the standard form matrices required
  to use solve.QP().
-Depends: quadprog, lpSolveAPI
+Imports: quadprog, lpSolveAPI
 Suggests: ggplot2
 URL: http://quadmod.r-forge.r-project.org
